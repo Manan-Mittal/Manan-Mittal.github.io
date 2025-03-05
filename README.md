@@ -1,2 +1,1 @@
-# Manan-Mittal.github.io
-Me!
+personal website
