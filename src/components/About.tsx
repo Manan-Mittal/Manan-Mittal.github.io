@@ -7,7 +7,7 @@ const About = () => {
     "React", "TypeScript", "Node.js", "Express", 
     "MongoDB", "PostgreSQL", "GraphQL", "REST APIs", 
     "Redux", "Next.js", "Tailwind CSS", "Docker",
-    "AWS", "CI/CD", "UI/UX Design", "Frontend Architecture"
+    "AWS", "CI/CD", "UI/UX Design", "Frontend Architecture", "GCP"
   ];
 
   return (
@@ -20,13 +20,13 @@ const About = () => {
             <div className="space-y-4 text-muted-foreground">
               <p className="text-lg">
                 Hello! I'm Manan Mittal, a Software Engineer at Deloitte with a passion for creating 
-                digital experiences and crafting unique coffee beverages through my pop-up 'To Be Continued'.
+                cool software and crafting unique beverages through my pop-up 'To Be Continued'.
               </p>
               
               <p>
                 As a developer, I bring the same attention to detail and creativity to my code as I do to my coffee.
                 I specialize in full-stack development, building applications that are both technically robust 
-                and aesthetically-pleasing.
+                and aesthetically-pleasing. I specialize in ml and data science, and I am always eager to learn new technologies and frameworks.
               </p>
               
               <div className="pt-4">
@@ -54,15 +54,7 @@ const About = () => {
                   ))}
                 </div>
               </div>
-              
               <div className="pt-4">
-                <div className="flex items-start">
-                  <Heart size={18} className="text-coffee mr-2 mt-1 flex-shrink-0" />
-                  <p>
-                    When I'm not coding, you'll find me working on my coffee pop-up 'To Be Continued', 
-                    which features Asian American-inspired drinks and provides a platform for the Asian American community.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -73,18 +65,17 @@ const About = () => {
               <div className="absolute inset-0 bg-sage/20 rounded-2xl transform rotate-3"></div>
               <div className="relative bg-cream rounded-2xl overflow-hidden shadow-coffee border border-cream-dark/10 p-4 aspect-square flex items-center justify-center">
                 <div className="w-full h-full rounded-xl bg-coffee-light/30 flex flex-col items-center justify-center gap-4">
-                  <PixelArt variant="laptop" className="transform scale-125" />
-                  <div className="mt-6 text-center">
-                    <p className="text-coffee-dark font-medium">Software Engineer</p>
-                    <p className="text-coffee text-sm">& Coffee Enthusiast</p>
-                  </div>
+                <img
+                    src="src/components/images/IMG_9778.jpeg"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
                 </div>
               </div>
             </div>
             
             <div className="absolute -bottom-6 -right-6 bg-cream p-4 rounded-lg shadow-soft border border-cream-dark/10 max-w-xs">
               <p className="font-serif text-coffee-dark text-sm italic">
-                "Bridging technology and coffee culture to create meaningful experiences."
+                "Me in Quebec at a Microroasterie!
               </p>
             </div>
           </div>
