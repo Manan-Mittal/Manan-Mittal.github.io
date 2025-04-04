@@ -66,7 +66,7 @@ const About = () => {
               <div className="relative bg-cream rounded-2xl overflow-hidden shadow-coffee border border-cream-dark/10 p-4 aspect-square flex items-center justify-center">
                 <div className="w-full h-full rounded-xl bg-coffee-light/30 flex flex-col items-center justify-center gap-4">
                 <img
-                    src="src/components/images/IMG_9778.jpeg"
+                    src="/images/IMG_9778.jpeg"
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
