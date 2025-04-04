@@ -29,36 +29,12 @@ const Projects = () => {
       demo: "https://example.com"
     },
     {
-      title: "Developer Toolkit",
-      description: "A collection of utilities for developers including code formatting, API testing, and documentation generation.",
-      tags: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-      icon: <Code className="w-10 h-10 text-coffee" />,
-      repo: "https://github.com/manan",
-      demo: "https://example.com"
-    },
-    {
       title: "Coffee Tasting Journal",
       description: "A mobile-first web app for coffee enthusiasts to track tastings with flavor profiles, rankings, and social sharing.",
       tags: ["Next.js", "Supabase", "TypeScript", "Prisma", "Vercel"],
-      icon: <PixelArt variant="coffee" className="w-10 h-10 text-coffee" />,
+      icon: <PixelArt variant="laptop" className="w-10 h-10 text-coffee" />,
       repo: "https://github.com/manan",
       demo: null
-    },
-    {
-      title: "Social Media Dashboard",
-      description: "A comprehensive dashboard for tracking and analyzing social media metrics across multiple platforms.",
-      tags: ["React", "D3.js", "Node.js", "API Integration"],
-      icon: <Globe className="w-10 h-10 text-coffee" />,
-      repo: "https://github.com/manan",
-      demo: "https://example.com"
-    },
-    {
-      title: "Real-time Collaboration App",
-      description: "A WebSocket-based platform for developers to collaborate on code and design projects in real-time.",
-      tags: ["Socket.io", "React", "Redux", "Node.js", "MongoDB"],
-      icon: <Code className="w-10 h-10 text-coffee" />,
-      repo: "https://github.com/manan",
-      demo: "https://example.com"
     }
   ];
   
