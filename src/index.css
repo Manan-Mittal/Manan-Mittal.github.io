@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 25% 97%;
+    --foreground: 20 15% 17%;
+
+    --card: 36 29% 92%;
+    --card-foreground: 20 15% 17%;
+
+    --popover: 36 30% 95%;
+    --popover-foreground: 20 15% 17%;
+
+    --primary: 25 35% 47%;
+    --primary-foreground: 36 100% 97%;
+
+    --secondary: 30 30% 94%;
+    --secondary-foreground: 25 35% 37%;
+
+    --muted: 30 15% 90%;
+    --muted-foreground: 25 10% 40%;
+
+    --accent: 110 15% 69%;
+    --accent-foreground: 25 35% 27%;
+
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 36 100% 97%;
+
+    --border: 35 30% 88%;
+    --input: 35 30% 88%;
+    --ring: 25 35% 47%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .menu-item {
+    @apply relative px-3 py-2 text-foreground/80 hover:text-foreground transition-colors duration-200;
+  }
+
+  .menu-item::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[2px] bg-coffee scale-x-0 origin-left transition-transform duration-300;
+  }
+
+  .menu-item:hover::after {
+    @apply scale-x-100;
+  }
+
+  .menu-item.active::after {
+    @apply scale-x-100 bg-coffee;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl text-coffee-dark mb-6 relative;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-[-8px] left-0 w-16 h-[3px] bg-coffee;
+  }
+
+  .card-coffee {
+    @apply bg-cream p-6 rounded-lg shadow-soft border border-cream-dark/20 transition-all duration-300 hover:shadow-coffee;
+  }
+
+  .coffee-pour {
+    @apply relative overflow-hidden;
+  }
+
+  .coffee-pour::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full bg-coffee/10 origin-top animate-pour;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

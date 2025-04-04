@@ -10,9 +10,9 @@ const Work = () => {
       title: "Software Engineer",
       company: "Deloitte",
       period: "July 2024 – Current",
-      description: "Working with talented people on a VHA supply chain project",
+      description: "Working on enterprise-level solutions, leveraging modern technologies and methodologies.",
       achievements: [
-        "",
+        "Recently joined as a full-time Software Engineer after successful internship",
         "Applying software engineering principles to deliver client solutions",
         "Collaborating with cross-functional teams on technology implementations"
       ],
@@ -22,7 +22,7 @@ const Work = () => {
       title: "Software Engineering Intern",
       company: "Deloitte",
       period: "June 2023 – August 2023",
-      description: "Worked on an FDA project, focusing on software development and data analysis.",
+      description: "Contributed to the development and maintenance of full-stack web applications for enterprise clients.",
       achievements: [
         "Worked on full-stack development projects using modern web technologies",
         "Collaborated with team members to implement and test new features",
@@ -35,7 +35,7 @@ const Work = () => {
       title: "Software Engineering Intern",
       company: "Mphasis",
       period: "July 2022 – September 2022",
-      description: "Worked on a Fincen project, building the future of cognitive based data engines.",
+      description: "Engaged in software development projects, focusing on web technologies and application development.",
       achievements: [
         "Developed web applications using JavaScript and related frameworks",
         "Contributed to backend development and API integration",
@@ -48,7 +48,7 @@ const Work = () => {
       title: "To Be Continued",
       company: "Coffee Pop-up",
       period: "Ongoing",
-      description: "Co-Founder of 'To Be Continued', an Asian American-inspired coffee pop-up that provides a platform for the Asian American community.",
+      description: "Founder of 'To Be Continued', an Asian American-inspired coffee pop-up that provides a platform for the Asian American community.",
       achievements: [
         "Created unique Asian American-inspired coffee beverages",
         "Built a community platform celebrating Asian American culture",
@@ -95,7 +95,7 @@ const Work = () => {
           
           {/* Job Details */}
           <div className="md:col-span-8">
-            <div className="card-coffee h-auto">
+            <div className="card-coffee h-full">
               <div className="flex items-center mb-4">
                 <Calendar size={20} className="text-coffee mr-2 flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">{jobs[activeJob].period}</span>
@@ -106,6 +106,16 @@ const Work = () => {
               </h3>
               
               <p className="text-muted-foreground mb-6">{jobs[activeJob].description}</p>
+              
+              <h4 className="font-medium text-coffee-dark mb-3">Key Activities:</h4>
+              <ul className="space-y-3">
+                {jobs[activeJob].achievements.map((achievement, index) => (
+                  <li key={index} className="flex items-start">
+                    <ArrowRight size={18} className="text-coffee mr-2 mt-1 flex-shrink-0" />
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

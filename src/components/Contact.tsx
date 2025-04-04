@@ -53,7 +53,7 @@ const Contact = () => {
           
           <div className="grid md:grid-cols-5 gap-8">
             <div className="md:col-span-2 space-y-6">
-            <div className="card-coffee">
+              <div className="card-coffee">
                 <div className="flex items-start">
                   <div className="bg-coffee/10 p-2 rounded-md mr-4">
                     <Mail size={20} className="text-coffee" />
@@ -66,7 +66,6 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-              
               
               <div className="card-coffee">
                 <div className="flex items-start">
@@ -82,7 +81,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            
             
             <div className="md:col-span-3">
               <form onSubmit={handleSubmit} className="card-coffee">

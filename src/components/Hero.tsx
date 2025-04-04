@@ -39,8 +39,8 @@ const Hero = () => {
           </div>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl text-balance">
-            A Software Engineer @ Deloitte blending tech expertise with a passion for coffee. 
-            Co-Creator of 'To Be Continued'.
+            Software Engineer at Deloitte blending tech expertise with a passion for coffee. 
+            Creator of 'To Be Continued', an Asian American-inspired coffee pop-up.
           </p>
           
           <div className="flex flex-wrap gap-4">
