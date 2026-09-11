@@ -246,7 +246,7 @@ export const POPUP = {
       name: 'Mango Sticky Rice Drink',
       note: 'Horchata with mango syrup and coconut foam. Iced only.',
       price: '6.5',
-      flag: 'House favourite',
+      flag: 'House favorite',
     },
     {
       name: 'Kulfi Coffee',

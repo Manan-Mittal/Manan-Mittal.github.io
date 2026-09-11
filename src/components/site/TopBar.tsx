@@ -38,7 +38,7 @@ export default function TopBar() {
 
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'border-b border-roast-600/70 bg-roast-950/95 py-3' : 'py-5'
+          scrolled ? 'border-b border-roast-600/70 bg-roast-950 py-3' : 'py-5'
         }`}
       >
         <div className="container flex items-center justify-between gap-6">
