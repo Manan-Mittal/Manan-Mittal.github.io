@@ -40,7 +40,7 @@ export const DRINKS: Drink[] = [
     note: 'Who I am and the kind of systems I work on.',
     leadsTo: 'About me',
     brewTime: 2.2,
-    build: { vessel: 'demitasse', fill: 0.52, liquid: '#33180A', cap: '#C98B3F', hot: true },
+    build: { vessel: 'demitasse', fill: 0.78, liquid: '#33180A', cap: '#7C4417', hot: true },
   },
   {
     id: 'work',
@@ -48,7 +48,7 @@ export const DRINKS: Drink[] = [
     note: 'Where I have worked and what I shipped there.',
     leadsTo: 'Work experience',
     brewTime: 2.8,
-    build: { vessel: 'demitasse', fill: 0.86, liquid: '#B98D62', cap: '#EEDFC6', hot: true },
+    build: { vessel: 'demitasse', fill: 0.92, liquid: '#B98D62', cap: '#D9BE94', hot: true },
   },
   {
     id: 'projects',
@@ -56,15 +56,15 @@ export const DRINKS: Drink[] = [
     note: 'Things I built on my own time, start to finish.',
     leadsTo: 'Projects',
     brewTime: 3.2,
-    build: { vessel: 'glass', fill: 0.82, liquid: '#3A1C0B', ice: true },
+    build: { vessel: 'glass', fill: 0.86, liquid: '#3A1C0B', ice: true },
   },
   {
     id: 'popup',
-    name: 'House Special',
+    name: 'Mango Sticky Rice',
     note: 'To Be Continued — the coffee pop-up I co-founded.',
     leadsTo: 'The pop-up',
     brewTime: 3.0,
-    build: { vessel: 'glass', fill: 0.78, liquid: '#8A5E2E', base: '#7BA05B', cap: '#F1E4CB', ice: true },
+    build: { vessel: 'glass', fill: 0.8, liquid: '#E3CFA8', base: '#E0952C', cap: '#FBF5E9', ice: true },
   },
   {
     id: 'contact',

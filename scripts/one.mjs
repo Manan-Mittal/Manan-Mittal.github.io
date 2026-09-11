@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const [, , idx = '3', name = 'one'] = process.argv;
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+await page.goto('http://localhost:8080', { waitUntil: 'networkidle' });
+await page.waitForTimeout(6000);
+await page.locator('#top ul li button').nth(+idx).click();
+await page.waitForFunction(() => window.__bar.getState().extraction > 0.85, null, { timeout: 9000 }).catch(() => {});
+await page.screenshot({ path: `.shots/${name}.png`, clip: { x: 950, y: 230, width: 420, height: 420 } });
+console.log('ok', name);
+await browser.close();

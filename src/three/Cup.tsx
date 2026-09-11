@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { M, steamTexture } from './materials';
 import { useBar } from '@/state/bar';
 import { DRINKS, type Drink } from '@/content/site';
+import { PORTAFILTER_LOCKED } from './layout';
 
 /**
  * What's actually on the tray. Each drink on the menu is built differently:
@@ -35,7 +36,7 @@ const CUP_PROFILE = [
  * through the cup wall — so the liquid is scaled on all three axes at once.
  */
 const DEMITASSE = { rim: 0.255, taperRatio: 0.6, floor: 0.05, depth: 0.31 };
-const GLASS = { rim: 0.26, taperRatio: 0.9, floor: 0.06, depth: 0.72 };
+const GLASS = { rim: 0.2, taperRatio: 0.88, floor: 0.05, depth: 0.42 };
 
 const restingBuild: Drink['build'] = {
   vessel: 'demitasse',
@@ -63,13 +64,12 @@ function Pour() {
       mesh.visible = ramp > 0.01;
       mesh.scale.set(ramp * jitter, 1, ramp * jitter);
       const mat = mesh.material as THREE.MeshStandardMaterial;
-      mat.color.set(build.liquid);
       mat.opacity = 0.6 + ramp * 0.4;
     });
   });
 
   return (
-    <group position={[0, 0.78, 0.4]}>
+    <group position={[0, 0.48, 0]} rotation={[0, PORTAFILTER_LOCKED, 0]}>
       {[-0.1, 0.1].map((x, i) => (
         <mesh
           key={x}
@@ -79,14 +79,17 @@ function Pour() {
           position={[x, 0, 0]}
           visible={false}
         >
-          <cylinderGeometry args={[0.016, 0.026, 0.26, 8, 1, true]} />
+          <cylinderGeometry args={[0.032, 0.046, 0.26, 10, 1, true]} />
           <meshStandardMaterial
-            color="#6b3b18"
-            roughness={0.25}
-            metalness={0.1}
+            color="#A8642C"
+            emissive="#6E3A10"
+            emissiveIntensity={0.75}
+            roughness={0.18}
+            metalness={0.05}
             transparent
-            opacity={0.9}
+            opacity={0.95}
             side={THREE.DoubleSide}
+            toneMapped={false}
           />
         </mesh>
       ))}
@@ -152,11 +155,11 @@ function Ice() {
   const cubes = useMemo(
     () =>
       [
-        { p: [0.07, 0.0, -0.05], r: [0.5, 0.8, 0.2], s: 0.13 },
-        { p: [-0.08, 0.11, 0.04], r: [1.1, 0.3, 0.9], s: 0.115 },
-        { p: [0.02, 0.22, 0.07], r: [0.2, 1.2, 0.5], s: 0.12 },
-        { p: [-0.05, 0.33, -0.06], r: [0.9, 0.6, 1.3], s: 0.105 },
-        { p: [0.09, 0.42, 0.02], r: [0.4, 0.2, 0.7], s: 0.115 },
+        { p: [0.05, 0.0, -0.04], r: [0.5, 0.8, 0.2], s: 0.095 },
+        { p: [-0.06, 0.08, 0.03], r: [1.1, 0.3, 0.9], s: 0.085 },
+        { p: [0.015, 0.16, 0.05], r: [0.2, 1.2, 0.5], s: 0.09 },
+        { p: [-0.04, 0.24, -0.05], r: [0.9, 0.6, 1.3], s: 0.08 },
+        { p: [0.07, 0.31, 0.015], r: [0.4, 0.2, 0.7], s: 0.085 },
       ] as const,
     [],
   );
@@ -174,7 +177,7 @@ function Ice() {
     const fill = build.fill * (stage === 'served' ? 1 : extraction);
     group.current.position.y = THREE.MathUtils.damp(
       group.current.position.y,
-      GLASS.floor + Math.max(0, fill * GLASS.depth - 0.3),
+      GLASS.floor + Math.max(0, fill * GLASS.depth - 0.22),
       7,
       dt,
     );
@@ -230,11 +233,12 @@ function Liquid({ vessel }: { vessel: 'demitasse' | 'glass' }) {
       if (build.cap) (cap.current.material as THREE.MeshStandardMaterial).color.set(build.cap);
     }
     if (base.current) {
-      // The denser layer settles in the bottom third
-      const bh = Math.min(h, h * 0.34 + 0.02);
-      base.current.visible = h > 0.12 && !!build.base && mine;
-      base.current.scale.set(dims.taperRatio * 1.02, bh / 0.34, dims.taperRatio * 1.02);
-      base.current.position.y = dims.floor + (bh * dims.depth) / 2;
+      // The denser layer settles in the bottom. It has to sit a hair WIDER than
+      // the liquid column or the opaque body swallows it completely.
+      const band = Math.min(h, 0.34);
+      base.current.visible = h > 0.1 && !!build.base && mine;
+      base.current.scale.set(width * 1.03, band / 0.34, width * 1.03);
+      base.current.position.y = dims.floor + (band * dims.depth) / 2;
       if (build.base) (base.current.material as THREE.MeshStandardMaterial).color.set(build.base);
     }
   });
@@ -251,7 +255,7 @@ function Liquid({ vessel }: { vessel: 'demitasse' | 'glass' }) {
       </mesh>
       <mesh ref={cap} rotation={[-Math.PI / 2, 0, 0]} visible={false}>
         <circleGeometry args={[dims.rim, 28]} />
-        <meshStandardMaterial color="#C98B3F" roughness={0.62} />
+        <meshStandardMaterial color="#7C4417" roughness={0.72} />
       </mesh>
     </>
   );
@@ -319,15 +323,16 @@ export default function Cup() {
       </Vessel>
 
       <Vessel kind="glass">
-        {/* Tumbler: walls, floor and a thicker rim */}
-        <mesh position={[0, 0.42, 0]} material={glassMat}>
-          <cylinderGeometry args={[0.29, 0.255, 0.8, 28, 1, true]} />
+        {/* Tumbler: walls, floor and a thicker rim. Its rim has to finish
+            below the portafilter spouts or the glass swallows the group. */}
+        <mesh position={[0, 0.29, 0]} material={glassMat}>
+          <cylinderGeometry args={[0.225, 0.2, 0.5, 24, 1, true]} />
         </mesh>
-        <mesh position={[0, 0.04, 0]} material={glassMat}>
-          <cylinderGeometry args={[0.255, 0.255, 0.06, 28]} />
+        <mesh position={[0, 0.06, 0]} material={glassMat}>
+          <cylinderGeometry args={[0.2, 0.2, 0.06, 24]} />
         </mesh>
-        <mesh position={[0, 0.82, 0]} rotation={[Math.PI / 2, 0, 0]} material={glassMat}>
-          <torusGeometry args={[0.288, 0.014, 8, 28]} />
+        <mesh position={[0, 0.54, 0]} rotation={[Math.PI / 2, 0, 0]} material={glassMat}>
+          <torusGeometry args={[0.224, 0.012, 8, 24]} />
         </mesh>
         <Liquid vessel="glass" />
         <Ice />

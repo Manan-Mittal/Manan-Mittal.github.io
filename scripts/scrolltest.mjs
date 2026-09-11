@@ -1,0 +1,22 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+await page.goto('http://localhost:8080', { waitUntil: 'networkidle' });
+await page.waitForTimeout(4500);
+const y = () => page.evaluate(() => Math.round(window.scrollY));
+console.log('start', await y());
+await page.evaluate(() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+await page.waitForTimeout(2000);
+console.log('after scrollIntoView smooth', await y());
+await page.evaluate(() => window.scrollTo(0, 0));
+await page.waitForTimeout(1500);
+console.log('reset', await y());
+await page.evaluate(() => document.getElementById('projects')?.scrollIntoView({ block: 'start' }));
+await page.waitForTimeout(1200);
+console.log('after scrollIntoView instant', await y());
+const info = await page.evaluate(() => {
+  const el = document.getElementById('projects');
+  return { found: !!el, offsetTop: el?.offsetTop, htmlScrollBehavior: getComputedStyle(document.documentElement).scrollBehavior, bodyOverflow: getComputedStyle(document.body).overflow, htmlOverflow: getComputedStyle(document.documentElement).overflowX };
+});
+console.log(JSON.stringify(info));
+await browser.close();

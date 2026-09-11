@@ -29,7 +29,7 @@ const FRAME_YAW = 0.2;
  */
 const SHOTS: Record<SectionId | 'bar' | 'brewing', { pos: THREE.Vector3; look: THREE.Vector3; fov: number }> = {
   bar:      { pos: new THREE.Vector3(0.4, 2.6, 10.6),  look: new THREE.Vector3(0, 1.62, 0),     fov: 32 },
-  brewing:  { pos: new THREE.Vector3(0.3, 2.55, 5.2),  look: new THREE.Vector3(0.02, 0.72, 0.45), fov: 34 },
+  brewing:  { pos: new THREE.Vector3(0.85, 2.05, 4.3), look: new THREE.Vector3(0.05, 0.82, 0.42), fov: 34 },
   about:    { pos: new THREE.Vector3(-1.4, 2.2, 11.4), look: new THREE.Vector3(-0.2, 1.5, 0),   fov: 30 },
   work:     { pos: new THREE.Vector3(2.6, 2.6, 11.8),  look: new THREE.Vector3(0.4, 1.6, 0),    fov: 30 },
   projects: { pos: new THREE.Vector3(0.3, 3.6, 13.6),  look: new THREE.Vector3(0, 2.5, -1.8),   fov: 32 },

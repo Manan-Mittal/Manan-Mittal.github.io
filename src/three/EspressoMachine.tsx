@@ -6,6 +6,7 @@ import { M, gaugeTexture } from './materials';
 import { useBar } from '@/state/bar';
 import { Part } from './Interactive';
 import { DRINKS } from '@/content/site';
+import { PORTAFILTER_IDLE, PORTAFILTER_LOCKED } from './layout';
 
 const opens = (id: 'about' | 'work' | 'projects' | 'popup' | 'contact') =>
   `Opens: ${DRINKS.find((d) => d.id === id)?.leadsTo ?? ''}`;
@@ -165,7 +166,7 @@ function BrewGroup() {
     if (!handle.current) return;
     const { stage } = useBar.getState();
     // Locked (rotated into the group) from the moment the grinder runs
-    const target = stage === 'idle' ? -0.42 : 0.14;
+    const target = stage === 'idle' ? PORTAFILTER_IDLE : PORTAFILTER_LOCKED;
     handle.current.rotation.y = THREE.MathUtils.damp(handle.current.rotation.y, target, 5, dt);
   });
 
@@ -198,7 +199,7 @@ function BrewGroup() {
       </Part>
 
       {/* Portafilter — basket, twin spouts, long walnut handle */}
-      <group ref={handle} position={[0, 1.06, 0]} rotation={[0, -0.42, 0]}>
+      <group ref={handle} position={[0, 1.06, 0]} rotation={[0, PORTAFILTER_IDLE, 0]}>
         <mesh material={M.chrome}>
           <cylinderGeometry args={[0.33, 0.29, 0.17, 24]} />
         </mesh>
@@ -402,7 +403,7 @@ export default function EspressoMachine() {
         castShadow
       />
       <RoundedBox
-        args={[3.1, 0.42, 0.04]}
+        args={[1.66, 0.42, 0.04]}
         radius={0.03}
         smoothness={3}
         position={[0, 1.84, 1.035]}
@@ -417,7 +418,7 @@ export default function EspressoMachine() {
         position={[0, 2.22, 0]}
         material={M.charcoal}
       />
-      <mesh position={[0, 2.13, 1.09]} material={M.copper}>
+      <mesh position={[0, 2.13, 1.13]} material={M.copper}>
         <boxGeometry args={[3.5, 0.035, 0.05]} />
       </mesh>
 

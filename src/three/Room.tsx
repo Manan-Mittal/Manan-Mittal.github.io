@@ -59,14 +59,15 @@ function Grinder() {
 
   const beanSeeds = useMemo(
     () =>
-      Array.from({ length: 46 }, () => {
-        // Hopper is a cone: the usable radius shrinks as the beans settle
-        const y = Math.random() * 0.42;
-        const maxR = 0.15 + (y / 0.42) * 0.17;
+      Array.from({ length: 76 }, () => {
+        // Heap, not a cloud: pick a radius across the hopper floor, then fill
+        // up to a domed surface that falls away toward the walls.
+        const r = 0.31 * Math.sqrt(Math.random());
+        const surface = 0.05 + 0.3 * (1 - (r / 0.33) ** 1.7);
         return {
-          r: Math.sqrt(Math.random()) * maxR,
+          r,
           a: Math.random() * Math.PI * 2,
-          y,
+          y: surface * Math.random() ** 0.65,
           rot: [Math.random() * 3, Math.random() * 3, Math.random() * 3] as [number, number, number],
         };
       }),
@@ -174,7 +175,7 @@ function Grinder() {
         <mesh position={[0, 2.09, 0]} material={M.walnut}>
           <sphereGeometry args={[0.07, 16, 12]} />
         </mesh>
-        <instancedMesh ref={beans} args={[undefined, undefined, beanSeeds.length]} position={[0, 1.5, 0]}>
+        <instancedMesh ref={beans} args={[undefined, undefined, beanSeeds.length]} position={[0, 1.47, 0]}>
           <sphereGeometry args={[0.05, 8, 6]} />
           <primitive object={M.bean} attach="material" />
         </instancedMesh>
