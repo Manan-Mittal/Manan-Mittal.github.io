@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -13,10 +12,8 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
+			padding: '1.5rem',
+			screens: { '2xl': '1360px' }
 		},
 		extend: {
 			colors: {
@@ -25,55 +22,47 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				},
-				coffee: {
-					light: '#E6D7C3',
-					DEFAULT: '#967259',
-					dark: '#634832',
-					black: '#2C1F1A'
+				primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+				secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' },
+				destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' },
+				muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+				accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
+				popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' },
+				card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
+
+				/* ── Bar palette ─────────────────────────────────────────
+				   roast   : the room, darkest → raised surfaces
+				   cream    : milk, all body copy
+				   crema    : the CTA — pulled-shot amber
+				   steam    : cool counterpoint for "resting" states
+				   copper  : machine trim / secondary accent           */
+				roast: {
+					950: '#0D0907',
+					900: '#150F0B',
+					800: '#1F1712',
+					700: '#2C211A',
+					600: '#3B2D23',
+					500: '#4E3C2F',
 				},
 				cream: {
-					light: '#FEF8EE',
-					DEFAULT: '#F5E8D4',
-					dark: '#E8D5B9'
+					DEFAULT: '#F4E7D6',
+					bright: '#FFF8EE',
+					dim: '#BFAA93',
+					mute: '#8C7A68',
 				},
-				sage: {
-					light: '#D1D9CE',
-					DEFAULT: '#A3B899',
-					dark: '#768F69'
+				crema: {
+					DEFAULT: '#E9A64A',
+					bright: '#F7C177',
+					deep: '#C97B2B',
 				},
-				wood: {
-					light: '#D7BC91',
-					DEFAULT: '#B08968',
-					dark: '#7D5C3F'
-				}
+				steam: {
+					DEFAULT: '#9FB9AE',
+					deep: '#6E8B80',
+				},
+				copper: {
+					DEFAULT: '#B87333',
+					dim: '#8A5626',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -81,49 +70,58 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				serif: ['Playfair Display', 'Georgia', 'serif'],
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['"Playfair Display"', 'Georgia', 'serif'],
+				body: ['"Source Serif 4"', 'Georgia', 'serif'],
+				mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+				/* legacy aliases so any untouched shadcn primitive still resolves */
+				serif: ['"Playfair Display"', 'Georgia', 'serif'],
+				sans: ['"Source Serif 4"', 'Georgia', 'serif'],
 			},
 			boxShadow: {
-				'soft': '0 4px 20px rgba(0, 0, 0, 0.08)',
-				'menu': '0 8px 30px rgba(0, 0, 0, 0.12)',
-				'coffee': '0 10px 30px rgba(44, 31, 26, 0.1)'
+				soft: '0 4px 20px rgba(0, 0, 0, 0.45)',
+				menu: '0 8px 30px rgba(0, 0, 0, 0.55)',
+				lift: '0 24px 48px -24px rgba(0, 0, 0, 0.9)',
+				glow: '0 0 40px -8px rgba(233, 166, 74, 0.55)',
 			},
 			keyframes: {
-				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' }
-				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' }
-				},
-				'fade-in': {
-					'0%': { opacity: '0', transform: 'translateY(10px)' },
+				'accordion-down': { from: { height: '0' }, to: { height: 'var(--radix-accordion-content-height)' } },
+				'accordion-up': { from: { height: 'var(--radix-accordion-content-height)' }, to: { height: '0' } },
+				'rise': {
+					'0%': { opacity: '0', transform: 'translateY(18px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
-				'fade-out': {
-					'0%': { opacity: '1', transform: 'translateY(0)' },
-					'100%': { opacity: '0', transform: 'translateY(10px)' }
+				'drip': {
+					'0%': { transform: 'translateY(-6px) scaleY(0.4)', opacity: '0' },
+					'35%': { opacity: '1' },
+					'100%': { transform: 'translateY(26px) scaleY(1)', opacity: '0' }
 				},
-				'steam': {
-					'0%': { transform: 'translateY(0) translateX(0) scale(1)', opacity: '0' },
-					'50%': { opacity: '0.5' },
-					'100%': { transform: 'translateY(-20px) translateX(5px) scale(1.5)', opacity: '0' }
+				'wisp': {
+					'0%': { transform: 'translateY(0) scaleX(1)', opacity: '0' },
+					'25%': { opacity: '0.55' },
+					'100%': { transform: 'translateY(-34px) scaleX(1.7)', opacity: '0' }
 				},
-				'pour': {
-					'0%': { height: '0%' },
-					'100%': { height: '100%' }
-				}
+				'flicker': {
+					'0%, 92%, 100%': { opacity: '1' },
+					'94%': { opacity: '0.55' },
+					'96%': { opacity: '0.9' },
+				},
+				'ticker': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.4s ease-out forwards',
-				'fade-out': 'fade-out 0.4s ease-out forwards',
-				'steam': 'steam 2s ease-out infinite',
-				'pour': 'pour 1.5s ease-out forwards'
-			}
+				'rise': 'rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+				'drip': 'drip 2.4s ease-in infinite',
+				'wisp': 'wisp 3.2s ease-out infinite',
+				'flicker': 'flicker 6s linear infinite',
+				'ticker': 'ticker 38s linear infinite',
+			},
+			transitionTimingFunction: {
+				'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

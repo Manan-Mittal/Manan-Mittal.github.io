@@ -1,24 +1,31 @@
+import SceneLayer from '@/components/site/SceneLayer';
+import TopBar from '@/components/site/TopBar';
+import Hero from '@/components/site/Hero';
+import About from '@/components/site/About';
+import Work from '@/components/site/Work';
+import Projects from '@/components/site/Projects';
+import PopUp from '@/components/site/PopUp';
+import Contact from '@/components/site/Contact';
+import Footer from '@/components/site/Footer';
 
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Work from '@/components/Work';
-import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+const Index = () => (
+  <div className="relative min-h-screen bg-roast-950">
+    <SceneLayer />
+    <TopBar />
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <main className="relative z-10">
       <Hero />
       <About />
       <Work />
       <Projects />
+      <PopUp />
       <Contact />
+    </main>
+
+    <div className="relative z-10">
       <Footer />
     </div>
-  );
-};
+  </div>
+);
 
 export default Index;

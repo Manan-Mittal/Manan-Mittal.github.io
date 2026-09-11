@@ -1,23 +1,24 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error('404: no route at', location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
+    <div className="room-light flex min-h-screen items-center justify-center bg-roast-950 px-6">
+      <div className="panel max-w-md p-10 text-center">
+        <p className="kicker">Error 404</p>
+        <h1 className="mt-4 font-display text-5xl text-cream">We’re out of that.</h1>
+        <p className="mt-4 text-cream-dim">
+          Nothing is brewing at <code className="font-mono text-[0.85rem] text-crema">{location.pathname}</code>.
+          The bar is still open, though.
+        </p>
+        <a href="/" className="btn-crema mt-8">
+          Back to the bar
         </a>
       </div>
     </div>

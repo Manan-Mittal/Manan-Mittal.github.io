@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,35 +6,40 @@
 
 @layer base {
   :root {
-    --background: 35 25% 97%;
-    --foreground: 20 15% 17%;
+    /* ── Espresso bar, after hours ─────────────────────────────── */
+    --background: 24 24% 4%;
+    --foreground: 33 45% 90%;
 
-    --card: 36 29% 92%;
-    --card-foreground: 20 15% 17%;
+    --card: 24 22% 8%;
+    --card-foreground: 33 45% 90%;
 
-    --popover: 36 30% 95%;
-    --popover-foreground: 20 15% 17%;
+    --popover: 24 24% 6%;
+    --popover-foreground: 33 45% 90%;
 
-    --primary: 25 35% 47%;
-    --primary-foreground: 36 100% 97%;
+    --primary: 34 78% 60%;
+    --primary-foreground: 24 40% 8%;
 
-    --secondary: 30 30% 94%;
-    --secondary-foreground: 25 35% 37%;
+    --secondary: 24 18% 14%;
+    --secondary-foreground: 33 40% 86%;
 
-    --muted: 30 15% 90%;
-    --muted-foreground: 25 10% 40%;
+    --muted: 24 16% 16%;
+    --muted-foreground: 32 22% 68%;
 
-    --accent: 110 15% 69%;
-    --accent-foreground: 25 35% 27%;
+    --accent: 34 78% 60%;
+    --accent-foreground: 24 40% 8%;
 
-    --destructive: 0 80% 50%;
-    --destructive-foreground: 36 100% 97%;
+    --destructive: 4 70% 52%;
+    --destructive-foreground: 33 45% 94%;
 
-    --border: 35 30% 88%;
-    --input: 35 30% 88%;
-    --ring: 25 35% 47%;
+    --border: 26 18% 18%;
+    --input: 26 18% 18%;
+    --ring: 34 78% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
+
+    /* Layout rhythm (density 4/10 — standard) */
+    --space-section: clamp(4.5rem, 9vw, 9rem);
+    --rule: 1px solid hsl(26 18% 18%);
   }
 
   * {
@@ -47,62 +51,128 @@
     @apply overflow-x-hidden;
   }
 
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+  body {
+    @apply bg-roast-950 text-cream font-body antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: theme('colors.crema.DEFAULT');
+    color: theme('colors.roast.950');
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.crema.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Thin, warm scrollbar to match the room */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: theme('colors.roast.950'); }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.roast.700');
+    border-radius: 99px;
+    border: 3px solid theme('colors.roast.950');
+  }
+  ::-webkit-scrollbar-thumb:hover { background: theme('colors.roast.600'); }
 }
 
 @layer components {
-  .menu-item {
-    @apply relative px-3 py-2 text-foreground/80 hover:text-foreground transition-colors duration-200;
+  /* Small uppercase mono label — the machine-panel voice */
+  .kicker {
+    @apply font-mono text-[0.68rem] uppercase tracking-[0.22em] text-cream-dim;
   }
 
-  .menu-item::after {
+  .rule-label {
+    @apply kicker flex items-center gap-3;
+  }
+  .rule-label::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-[2px] bg-coffee scale-x-0 origin-left transition-transform duration-300;
-  }
-
-  .menu-item:hover::after {
-    @apply scale-x-100;
-  }
-
-  .menu-item.active::after {
-    @apply scale-x-100 bg-coffee;
+    @apply h-px flex-1 bg-roast-600;
   }
 
   .section-title {
-    @apply font-serif text-3xl md:text-4xl text-coffee-dark mb-6 relative;
+    @apply font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.05] text-cream;
   }
 
-  .section-title::after {
-    content: '';
-    @apply absolute bottom-[-8px] left-0 w-16 h-[3px] bg-coffee;
+  /* Brushed-metal panel: the surface everything on this site is bolted to */
+  .panel {
+    @apply relative rounded-lg border border-roast-600/80 bg-roast-900/95;
+    box-shadow:
+      inset 0 1px 0 0 rgb(255 255 255 / 0.05),
+      0 1px 2px rgb(0 0 0 / 0.6),
+      0 24px 48px -24px rgb(0 0 0 / 0.9);
   }
 
-  .card-coffee {
-    @apply bg-cream p-6 rounded-lg shadow-soft border border-cream-dark/20 transition-all duration-300 hover:shadow-coffee;
+  .panel-inset {
+    @apply rounded-md border border-roast-600/60 bg-roast-950/80;
+    box-shadow: inset 0 2px 8px rgb(0 0 0 / 0.55);
   }
 
-  .coffee-pour {
-    @apply relative overflow-hidden;
+  /* Primary control — reads like a warm backlit machine button */
+  .btn-crema {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-md
+           bg-crema px-5 py-3 font-mono text-[0.72rem] uppercase tracking-[0.18em]
+           text-roast-950 transition-all duration-200 ease-out
+           hover:bg-crema-bright hover:-translate-y-px active:translate-y-0
+           disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+    box-shadow: 0 0 0 1px rgb(233 166 74 / 0.4), 0 8px 24px -10px rgb(233 166 74 / 0.6);
+    min-height: 44px;
   }
 
-  .coffee-pour::before {
-    content: '';
-    @apply absolute top-0 left-0 w-full h-full bg-coffee/10 origin-top animate-pour;
+  .btn-ghost {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-md
+           border border-roast-600 bg-roast-800/60 px-5 py-3 font-mono text-[0.72rem]
+           uppercase tracking-[0.18em] text-cream transition-all duration-200 ease-out
+           hover:border-crema/60 hover:bg-roast-700/70 hover:text-crema;
+    min-height: 44px;
+  }
+
+  /* Warm vignette + light bloom bleeding in from the bar lamps */
+  .room-light {
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgb(233 166 74 / 0.10), transparent 60%),
+      radial-gradient(100% 60% at 100% 100%, rgb(184 115 51 / 0.08), transparent 70%);
   }
 }
 
 @layer utilities {
-  .text-shadow-sm {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Film grain — keeps flat dark areas from banding, sells the "rendered" look */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.28;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }
 
-  .text-balance {
-    text-wrap: balance;
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
   }
 }
