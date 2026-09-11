@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import EspressoMachine from './EspressoMachine';
 import Room from './Room';
 import Cup from './Cup';
+import MilkPitcher from './Milk';
 import { M, primeMaterials } from './materials';
 import { useBar, sequenceLength } from '@/state/bar';
 import { DRINKS, type SectionId } from '@/content/site';
@@ -27,9 +28,11 @@ const FRAME_YAW = 0.2;
  * Where the camera stands for each part of the page. `pos` is the eye,
  * `look` is what it's pointed at. Everything is damped, never cut.
  */
-const SHOTS: Record<SectionId | 'bar' | 'brewing', { pos: THREE.Vector3; look: THREE.Vector3; fov: number }> = {
+const SHOTS: Record<SectionId | 'bar' | 'brewing' | 'steaming', { pos: THREE.Vector3; look: THREE.Vector3; fov: number }> = {
   bar:      { pos: new THREE.Vector3(0.4, 2.6, 10.6),  look: new THREE.Vector3(0, 1.62, 0),     fov: 32 },
   brewing:  { pos: new THREE.Vector3(0.85, 2.05, 4.3), look: new THREE.Vector3(0.05, 0.82, 0.42), fov: 34 },
+  // Milk drinks need the wand and the pitcher in frame as well as the cup
+  steaming: { pos: new THREE.Vector3(-0.3, 2.2, 5.1), look: new THREE.Vector3(-0.95, 0.86, 0.45), fov: 40 },
   about:    { pos: new THREE.Vector3(-1.4, 2.2, 11.4), look: new THREE.Vector3(-0.2, 1.5, 0),   fov: 30 },
   work:     { pos: new THREE.Vector3(2.6, 2.6, 11.8),  look: new THREE.Vector3(0.4, 1.6, 0),    fov: 30 },
   projects: { pos: new THREE.Vector3(0.3, 3.6, 13.6),  look: new THREE.Vector3(0, 2.5, -1.8),   fov: 32 },
@@ -77,8 +80,13 @@ function Rig() {
   }, []);
 
   useFrame((_, dt) => {
-    const { focus, stage, reducedMotion } = useBar.getState();
-    const shot = stage === 'idle' ? SHOTS[focus] ?? SHOTS.bar : SHOTS.brewing;
+    const { focus, stage, reducedMotion, activeDrink } = useBar.getState();
+    const shot =
+      stage === 'idle'
+        ? SHOTS[focus] ?? SHOTS.bar
+        : DRINKS.find((d) => d.id === activeDrink)?.build.steamMilk
+        ? SHOTS.steaming
+        : SHOTS.brewing;
 
     // Narrow viewports get pushed back so the machine still fits the frame;
     // wide ones yaw the camera so the bar sits clear of the text column.
@@ -181,6 +189,7 @@ function Stage() {
         <Room />
         <EspressoMachine />
         <Cup />
+        <MilkPitcher />
       </group>
 
       <ContactShadows

@@ -140,12 +140,15 @@ function Grinder() {
           </mesh>
         ))}
 
-        {/* Maker's plate + power lamp */}
-        <mesh position={[0, 0.98, 0.37]} rotation={[0, 0, 0]} material={M.copper}>
-          <boxGeometry args={[0.34, 0.1, 0.02]} />
+        {/* Maker's plate, and a single lit start button below it */}
+        <mesh position={[0, 1.02, 0.37]} material={M.copper}>
+          <boxGeometry args={[0.4, 0.09, 0.02]} />
         </mesh>
-        <mesh position={[0.2, 0.66, 0.35]}>
-          <sphereGeometry args={[0.035, 12, 12]} />
+        <mesh position={[0, 0.78, 0.35]} rotation={[Math.PI / 2, 0, 0]} material={M.charcoal}>
+          <cylinderGeometry args={[0.085, 0.085, 0.05, 20]} />
+        </mesh>
+        <mesh position={[0, 0.78, 0.385]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.055, 0.055, 0.03, 20]} />
           <meshStandardMaterial
             ref={lamp}
             color="#3a2a18"
@@ -154,10 +157,6 @@ function Grinder() {
             roughness={0.4}
             toneMapped={false}
           />
-        </mesh>
-        {/* Start button */}
-        <mesh position={[-0.2, 0.66, 0.35]} rotation={[Math.PI / 2, 0, 0]} material={M.charcoal}>
-          <cylinderGeometry args={[0.06, 0.06, 0.05, 16]} />
         </mesh>
 
         {/* Adjustment collar with grip teeth */}
@@ -483,7 +482,7 @@ export default function Room() {
         </mesh>
       </group>
 
-      <BeanBowl position={[-1.62, 0, 1.05]} />
+      <BeanBowl position={[-2.05, 0, 1.62]} />
       <ReceiptPrinter position={[1.55, 0, 2.15]} onSelect={() => order('contact')} />
     </group>
   );

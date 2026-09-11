@@ -21,6 +21,8 @@ export interface Drink {
   /** How the 3D bar actually builds this drink */
   build: {
     vessel: 'demitasse' | 'glass' | 'none';
+    /** Whether the bar steams a pitcher of milk for this one */
+    steamMilk?: boolean;
     /** 0–1 of the vessel's usable height */
     fill: number;
     liquid: string;
@@ -48,7 +50,7 @@ export const DRINKS: Drink[] = [
     note: 'Where I have worked and what I shipped there.',
     leadsTo: 'Work experience',
     brewTime: 2.8,
-    build: { vessel: 'demitasse', fill: 0.92, liquid: '#B98D62', cap: '#D9BE94', hot: true },
+    build: { vessel: 'demitasse', fill: 0.92, liquid: '#B98D62', cap: '#D9BE94', hot: true, steamMilk: true },
   },
   {
     id: 'projects',

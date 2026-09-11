@@ -254,32 +254,15 @@ function SteamWand() {
         <sphereGeometry args={[0.092, 14, 12]} />
       </mesh>
       {/* One continuous tube down and forward, tip last */}
-      <group rotation={[0.3, 0, 0.28]}>
-        <mesh position={[0, -0.36, 0]} material={M.chrome}>
-          <cylinderGeometry args={[0.042, 0.04, 0.72, 14]} />
+      <group rotation={[-0.14, 0, -0.36]}>
+        <mesh position={[0, -0.5, 0]} material={M.chrome}>
+          <cylinderGeometry args={[0.042, 0.04, 1.0, 14]} />
         </mesh>
-        <mesh position={[0, -0.73, 0]} material={M.chrome}>
+        <mesh position={[0, -1.0, 0]} material={M.chrome}>
           <cylinderGeometry args={[0.055, 0.034, 0.1, 14]} />
         </mesh>
       </group>
     </Part>
-  );
-}
-
-/** Hot-water tap, left cheek. */
-function WaterTap() {
-  return (
-    <group position={[1.98, 1.3, 0.62]}>
-      <mesh material={M.chrome}>
-        <sphereGeometry args={[0.085, 14, 12]} />
-      </mesh>
-      <mesh position={[-0.09, 0, 0]} rotation={[0, 0, Math.PI / 2]} material={M.chrome}>
-        <cylinderGeometry args={[0.05, 0.05, 0.18, 14]} />
-      </mesh>
-      <mesh position={[0, -0.26, 0]} material={M.chrome}>
-        <cylinderGeometry args={[0.036, 0.036, 0.5, 14]} />
-      </mesh>
-    </group>
   );
 }
 
@@ -448,7 +431,6 @@ export default function EspressoMachine() {
       <Gauge />
       <Controls />
       <SteamWand />
-      <WaterTap />
       <Knobs />
       <WarmerCups />
     </group>
