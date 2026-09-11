@@ -19,35 +19,6 @@ const opens = (id: 'about' | 'work' | 'projects' | 'popup' | 'contact') =>
  *   alcove    the gap between them — group head, portafilter, cup, tray
  */
 
-/** Etched brass nameplate. */
-const badgeTexture = (() => {
-  let cached: THREE.CanvasTexture | null = null;
-  return () => {
-    if (cached) return cached;
-    const c = document.createElement('canvas');
-    c.width = 512;
-    c.height = 96;
-    const ctx = c.getContext('2d')!;
-    ctx.fillStyle = '#8a5a26';
-    ctx.fillRect(0, 0, 512, 96);
-    ctx.strokeStyle = '#4a2c10';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(8, 8, 496, 80);
-    ctx.fillStyle = '#F6E3C0';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.font = 'italic 700 44px Georgia, serif';
-    ctx.fillText('Mittal', 190, 50);
-    ctx.font = '500 22px ui-monospace, monospace';
-    ctx.letterSpacing = '4px';
-    ctx.fillText('DUE GRUPPI', 360, 52);
-    const tex = new THREE.CanvasTexture(c);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    cached = tex;
-    return tex;
-  };
-})();
-
 /** Four screws in a rectangle — the cheapest way to make a panel look bolted on. */
 function Screws({ w, h, z }: { w: number; h: number; z: number }) {
   return (
@@ -266,7 +237,7 @@ function SteamWand() {
       label="Steam the milk"
       sub={opens('work')}
       position={[-1.98, 1.42, 0.62]}
-      radius={0.42}
+      radius={0.3}
       lift={0}
       labelOffset={0.3}
       onSelect={() => order('work')}
@@ -367,7 +338,6 @@ function WarmerCups() {
 
 export default function EspressoMachine() {
   const shell = useRef<THREE.Group>(null);
-  const badge = useMemo(() => badgeTexture(), []);
 
   useFrame((state, dt) => {
     if (!shell.current) return;
@@ -462,10 +432,9 @@ export default function EspressoMachine() {
         <meshStandardMaterial color="#FFE0B0" emissive="#FFC98A" emissiveIntensity={1.6} toneMapped={false} />
       </mesh>
 
-      {/* Brass nameplate */}
-      <mesh position={[0, 2.0, 1.075]}>
-        <planeGeometry args={[0.92, 0.17]} />
-        <meshStandardMaterial map={badge} metalness={0.85} roughness={0.34} />
+      {/* A plain brass rail where the maker's badge would go */}
+      <mesh position={[0, 2.0, 1.075]} material={M.copper}>
+        <boxGeometry args={[0.9, 0.05, 0.02]} />
       </mesh>
       {[-1.25, 1.25].map((x) => (
         <mesh key={x} position={[x, 0.4, 1.075]} material={M.copper}>

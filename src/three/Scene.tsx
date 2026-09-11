@@ -170,7 +170,7 @@ function Stage() {
 
       {/* A built environment map — soft boxes above and to the sides. This is
           what makes the stainless read as metal instead of grey plastic. */}
-      <Environment resolution={256} frames={1}>
+      <Environment resolution={512} frames={1}>
         <Lightformer form="rect" intensity={6} color="#fff0dd" scale={[12, 5, 1]} position={[0, 7, 4]} rotation={[-Math.PI / 2.6, 0, 0]} />
         <Lightformer form="rect" intensity={3.2} color="#cfe3ef" scale={[7, 7, 1]} position={[-9, 2.5, 3]} rotation={[0, Math.PI / 2, 0]} />
         <Lightformer form="rect" intensity={2.8} color="#ffd9a8" scale={[7, 7, 1]} position={[9, 2.5, 3]} rotation={[0, -Math.PI / 2, 0]} />
@@ -220,7 +220,7 @@ export default function Scene({ active }: { active: boolean }) {
         toneMappingExposure: 1.35,
         outputColorSpace: THREE.SRGBColorSpace,
       }}
-      camera={{ position: [0.6, 2.4, 8.6], fov: 34, near: 0.1, far: 60 }}
+      camera={{ position: [0.6, 2.4, 8.6], fov: 34, near: 1.2, far: 44 }}
       onCreated={({ scene }) => {
         scene.background = new THREE.Color('#0D0907');
         scene.fog = new THREE.Fog('#0D0907', 12, 26);

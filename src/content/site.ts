@@ -91,29 +91,36 @@ export const PROFILE = {
   photoCaption: 'At a microroasterie in Quebec.',
   tagline: 'I build software during the day and pull espresso shots on the weekend.',
   bio: [
-    `I'm a software engineer at Deloitte, where I work on supply chain systems for the
-     VHA. Before that I was on projects for the FDA and FinCEN — the through-line is
-     large, old, load-bearing systems that people actually depend on.`,
-    `Outside of work I co-founded To Be Continued, an Asian American coffee pop-up.
-     Same instinct as the code, honestly: take something familiar, take it apart,
-     and put it back together so it means something to the people in front of you.`,
+    `I'm a software engineer at Deloitte, working on AI systems for the Veterans Health
+     Administration. Most of my time goes into a multi-agent LLM assistant that reads
+     per-case medical evidence and drafts standardized disability evaluation
+     questionnaires — work that used to be manual clinician review, on a queue measured
+     in hundreds of thousands of claims a quarter.`,
+    `The interesting part isn't the model, it's everything around it: guardrails that
+     refuse malformed output before a clinician ever sees it, an offline eval harness
+     that catches regressions before release, and reactive Java services underneath that
+     have to stay up. Large, old, load-bearing systems that people actually depend on.`,
+    `Outside of work I co-founded To Be Continued, an Asian American coffee pop-up. Same
+     instinct as the code, honestly: take something familiar, take it apart, and put it
+     back together so it means something to the people in front of you.`,
   ],
   education: {
     school: 'Rutgers University',
     where: 'New Brunswick, NJ',
     degrees: 'B.S. Computer Science · B.A. Cognitive Science',
-    years: 'Sep 2020 — May 2024',
-    honors: ["Dean's List", 'Scarlet Scholarship', 'Rutgers College Scholarship', 'SAS Excellence Award'],
+    years: '2020 — May 2024',
+    gpa: '4.0 / 4.0',
+    honors: ["Dean's List", 'Scarlet Scholarship', 'Class of 1938 Scholarship', 'SAS Excellence Award'],
   },
 };
 
 /** Grouped so the "grinder settings" panel reads like a real dial, not a word cloud. */
 export const SKILLS: { group: string; items: string[] }[] = [
-  { group: 'Core', items: ['TypeScript', 'Python', 'Java', 'SQL'] },
-  { group: 'Front of house', items: ['React', 'Next.js', 'Tailwind', 'Three.js'] },
-  { group: 'Back of house', items: ['Node', 'Express', 'PostgreSQL', 'MongoDB', 'GraphQL'] },
-  { group: 'Machinery', items: ['Docker', 'AWS', 'GCP', 'CI/CD'] },
-  { group: 'Roasting', items: ['ML / Data Science', 'Data pipelines'] },
+  { group: 'AI & LLM', items: ['Multi-agent systems', 'RAG & retrieval', 'OCR pipelines', 'Guardrails', 'Offline evals', 'Tool calling'] },
+  { group: 'Languages', items: ['Java', 'TypeScript', 'Python', 'SQL', 'JavaScript'] },
+  { group: 'Backend', items: ['Spring Boot', 'Project Reactor', 'Redis', 'ZooKeeper', 'Node.js', 'REST'] },
+  { group: 'Frontend', items: ['React', 'MobX', 'Tailwind', 'Three.js'] },
+  { group: 'Cloud', items: ['AWS', 'GCP', 'Kubernetes', 'GKE', 'Docker', 'Git'] },
 ];
 
 export interface Job {
@@ -131,12 +138,15 @@ export const JOBS: Job[] = [
     ticket: '#0041',
     title: 'Software Engineer II',
     company: 'Deloitte',
-    period: 'Jul 2024 — present',
-    summary: 'Supply chain modernization for the Veterans Health Administration.',
+    period: 'Jul 2024 — present · New York, NY',
+    summary: 'AI systems for the Veterans Health Administration.',
     lines: [
-      'Build and ship features on a supply chain platform used across VHA facilities',
-      'Work across the stack with a cross-functional delivery team',
-      'Translate client requirements into systems that survive contact with real operations',
+      'Designed a multi-agent LLM assistant that reasons over per-case indexed PDF evidence to draft and approve standardized disability evaluation questionnaires, replacing manual clinician review on a queue of hundreds of thousands of claims a quarter',
+      'Built 7 LLM guardrails now running across 17+ projects, validating output against clinical form schemas and blocking malformed responses before a reviewer sees them',
+      'Built an offline evaluation harness for production agent workflows that catches accuracy and behavior regressions before release',
+      'Architected reactive Java services on Spring Boot and Project Reactor with Redis caching and ZooKeeper coordination',
+      'Implemented OCR-driven document indexing and tuned the surrounding SQL, scaling throughput 6x — roughly 1,000 to over 6,000 cases a day',
+      'Shipped TypeScript and React front ends with MobX, used by hundreds of thousands of clinicians and patients under federal privacy, security and Section 508 requirements',
     ],
     active: true,
   },
@@ -144,35 +154,34 @@ export const JOBS: Job[] = [
     ticket: '#0033',
     title: 'Software Engineering Intern',
     company: 'Deloitte',
-    period: 'Jun 2023 — Aug 2023',
-    summary: 'Full-stack development and data analysis on an FDA engagement.',
+    period: 'Jun 2023 — Aug 2023 · Rosslyn, VA',
+    summary: 'Backend and reporting on a federal engagement.',
     lines: [
-      'Built features for an enterprise web application end to end',
-      'Ran analysis on program data to support client decisions',
-      'Worked inside an agile delivery cadence with client-facing reviews',
+      'Built a Java and Spring Boot REST API that processed JSON chart data to power dynamic visualizations',
+      'Automated an email reporting system with templated HTML, live database content and PDF export, removing a recurring manual task',
+      'Containerized and deployed services with Docker and Kubernetes on Google Kubernetes Engine',
     ],
   },
   {
     ticket: '#0022',
     title: 'Software Engineering Intern',
     company: 'Mphasis',
-    period: 'Jul 2022 — Sep 2022',
-    summary: 'Cognitive data engine work on a FinCEN project.',
+    period: 'Jul 2022 — Sep 2022 · New York, NY',
+    summary: 'Turning federal regulation into structured, queryable data.',
     lines: [
-      'Developed web application features in JavaScript and supporting frameworks',
-      'Contributed backend endpoints and API integrations',
-      'Participated in code review and test coverage for the team',
+      'Built semantic content-extraction algorithms converting 4,000+ Federal Register documents into standardized USLM XML, producing a library of 5,000+ structured documents',
+      'Implemented formal logic-based analysis over the corpus to evaluate regulatory norms and resolve normative queries automatically',
     ],
   },
   {
     ticket: '#0001',
     title: 'Co-Founder',
     company: 'To Be Continued',
-    period: 'Ongoing',
+    period: 'Ongoing · Jersey City, NJ',
     summary: 'An Asian American coffee pop-up — drinks, community, and a lot of logistics.',
     lines: [
-      'Developed a drink menu built on Asian American flavors and memory',
-      'Ran operations, sourcing, and service for pop-up events',
+      'Built a specialty menu on Asian American flavors: mango sticky rice, kulfi, ube kopi, miso caramel',
+      'Ran operations, sourcing and service for pop-up events',
       'Built the brand and the community around it from nothing',
     ],
   },
@@ -227,13 +236,43 @@ export const POPUP = {
     `To Be Continued started from a simple frustration: the flavors we grew up with almost
      never make it onto a café menu, and when they do they arrive flattened into a syrup.`,
     `So we built the menu the other way around — start from the flavor, then figure out the
-     drink. Pandan, black sesame, ube, salted plum. Coffee as the medium, not the point.`,
+     drink. Mango sticky rice as horchata. Kulfi as an espresso base. Kopi with ube at the
+     bottom of the glass. Coffee as the medium, not the point.`,
     `The name is the promise. Every pop-up is an episode, not a finale.`,
   ],
+  /** The real specialty list, in menu order. */
   menu: [
-    { name: 'Pandan Latte', note: 'Coconut milk, pandan, single origin' },
-    { name: 'Black Sesame Cortado', note: 'Toasted sesame, two ounces, no sugar' },
-    { name: 'Salted Plum Espresso Tonic', note: 'Sour, saline, extremely awake' },
+    {
+      name: 'Mango Sticky Rice Drink',
+      note: 'Horchata with mango syrup and coconut foam. Iced only.',
+      price: '6.5',
+      flag: 'House favourite',
+    },
+    {
+      name: 'Kulfi Coffee',
+      note: 'Nutty kulfi base with espresso and milk, pistachio crumble on top.',
+      price: '7.5 / 8',
+    },
+    {
+      name: 'Ube Kopi',
+      note: 'Malaysian kopi with condensed milk and ube at the bottom. Iced only.',
+      price: '6.5',
+    },
+    {
+      name: 'Miso Caramel Latte',
+      note: 'Miso caramel syrup with espresso and milk. Hot only.',
+      price: '6.5',
+    },
+    {
+      name: 'Moonlight Lavender Latte',
+      note: 'Citrusy, creamy earl grey with milk and lavender simple syrup.',
+      price: '6 / 6.5',
+    },
+  ],
+  also: [
+    { name: 'Coffees', note: 'Espresso, macchiato, cortado, latte, americano, cappuccino', price: '5' },
+    { name: 'Teas', note: 'April in Paris · Sun Showers', price: '5' },
+    { name: 'Dessert', note: 'Coffee jelly — espresso-based jelly with sweet cream', price: '4' },
   ],
 };
 

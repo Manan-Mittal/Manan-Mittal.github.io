@@ -1,6 +1,5 @@
 import { type ReactNode } from 'react';
-import { useInView, useReveal } from '@/hooks/useInView';
-import { useBar } from '@/state/bar';
+import { useReveal } from '@/hooks/useInView';
 import type { SectionId } from '@/content/site';
 
 interface SectionProps {
@@ -15,14 +14,11 @@ interface SectionProps {
 }
 
 export default function Section({ id, kicker, title, side = 'left', children, wide }: SectionProps) {
-  const setFocus = useBar((s) => s.setFocus);
-  const ref = useInView(() => setFocus(id));
   const reveal = useReveal<HTMLDivElement>();
 
   return (
     <section
       id={id}
-      ref={ref as React.RefObject<HTMLElement>}
       className="relative py-[var(--space-section)]"
       aria-labelledby={`${id}-title`}
     >
@@ -32,7 +28,7 @@ export default function Section({ id, kicker, title, side = 'left', children, wi
             ref={reveal}
             data-shown="false"
             className={[
-              'group/section transition-all duration-700 ease-out-expo',
+              'group/section pointer-events-auto transition-all duration-700 ease-out-expo',
               'data-[shown=false]:translate-y-6 data-[shown=false]:opacity-0',
               'data-[shown=true]:translate-y-0 data-[shown=true]:opacity-100',
               wide ? 'lg:col-span-12' : 'lg:col-span-7',

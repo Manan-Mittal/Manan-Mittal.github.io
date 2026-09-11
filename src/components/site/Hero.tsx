@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { PROFILE } from '@/content/site';
-import { useBar } from '@/state/bar';
 import OrderCounter from './OrderCounter';
 
 /** Opening hours line — real clock, because a bar should know what time it is. */
@@ -18,16 +17,6 @@ function Clock() {
 }
 
 export default function Hero() {
-  const setFocus = useBar((s) => s.setFocus);
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY < window.innerHeight * 0.4) setFocus('bar');
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [setFocus]);
-
   return (
     <section
       id="top"
@@ -35,7 +24,7 @@ export default function Hero() {
     >
       <div className="container">
         <div className="grid lg:grid-cols-12">
-          <div className="animate-rise lg:col-span-6 xl:col-span-5">
+          <div className="pointer-events-auto animate-rise lg:col-span-6 xl:col-span-5">
             <p className="kicker flex flex-wrap items-center gap-x-3 gap-y-1">
               <span className="text-crema">Open</span>
               <span aria-hidden="true" className="text-cream-mute">/</span>

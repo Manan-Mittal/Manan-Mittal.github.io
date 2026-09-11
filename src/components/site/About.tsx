@@ -21,7 +21,8 @@ export default function About() {
                 <p className="font-display text-lg text-cream">{PROFILE.education.school}</p>
                 <p className="text-sm text-cream-dim">{PROFILE.education.degrees}</p>
                 <p className="mt-1 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-cream-mute">
-                  {PROFILE.education.years} · {PROFILE.education.where}
+                  {PROFILE.education.years} · {PROFILE.education.where} ·{' '}
+                  <span className="text-crema">{PROFILE.education.gpa} GPA</span>
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {PROFILE.education.honors.map((h) => (

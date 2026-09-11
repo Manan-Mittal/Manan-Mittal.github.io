@@ -59,12 +59,17 @@ function Grinder() {
 
   const beanSeeds = useMemo(
     () =>
-      Array.from({ length: 54 }, () => ({
-        r: Math.random() * 0.3,
-        a: Math.random() * Math.PI * 2,
-        y: Math.random() * 0.34,
-        rot: [Math.random() * 3, Math.random() * 3, Math.random() * 3] as [number, number, number],
-      })),
+      Array.from({ length: 46 }, () => {
+        // Hopper is a cone: the usable radius shrinks as the beans settle
+        const y = Math.random() * 0.42;
+        const maxR = 0.15 + (y / 0.42) * 0.17;
+        return {
+          r: Math.sqrt(Math.random()) * maxR,
+          a: Math.random() * Math.PI * 2,
+          y,
+          rot: [Math.random() * 3, Math.random() * 3, Math.random() * 3] as [number, number, number],
+        };
+      }),
     [],
   );
 
@@ -92,7 +97,7 @@ function Grinder() {
         m.compose(
           new THREE.Vector3(Math.cos(b.a) * b.r, b.y + sink, Math.sin(b.a) * b.r),
           q,
-          new THREE.Vector3(1, 0.62, 0.78),
+          new THREE.Vector3(0.82, 0.52, 0.66),
         );
         beans.current!.setMatrixAt(i, m);
       });
@@ -169,7 +174,7 @@ function Grinder() {
         <mesh position={[0, 2.09, 0]} material={M.walnut}>
           <sphereGeometry args={[0.07, 16, 12]} />
         </mesh>
-        <instancedMesh ref={beans} args={[undefined, undefined, beanSeeds.length]} position={[0, 1.54, 0]}>
+        <instancedMesh ref={beans} args={[undefined, undefined, beanSeeds.length]} position={[0, 1.5, 0]}>
           <sphereGeometry args={[0.05, 8, 6]} />
           <primitive object={M.bean} attach="material" />
         </instancedMesh>
@@ -421,7 +426,7 @@ export default function Room() {
       <Part
         label="To Be Continued"
         sub={opens('popup')}
-        position={[5.6, 2.5, -5.3]}
+        position={[4.7, 2.5, -5.3]}
         radius={1.1}
         lift={0}
         onSelect={() => order('popup')}
