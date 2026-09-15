@@ -102,9 +102,9 @@ export const PROFILE = {
      refuse malformed output before a clinician ever sees it, an offline eval harness
      that catches regressions before release, and reactive Java services underneath that
      have to stay up. Large, old, load-bearing systems that people actually depend on.`,
-    `Outside of work I co-founded To Be Continued, an Asian American coffee pop-up. Same
-     instinct as the code, honestly: take something familiar, take it apart, and put it
-     back together so it means something to the people in front of you.`,
+    `Outside of work I co-founded To Be Continued, an Asian American coffee pop-up. The menu
+     starts from flavors we grew up with rather than from a syrup bottle, which turns out to
+     be a lot of sourcing, a lot of testing, and a folding table at six in the morning.`,
   ],
   education: {
     school: 'Rutgers University',
@@ -180,7 +180,7 @@ export const JOBS: Job[] = [
     title: 'Co-Founder',
     company: 'To Be Continued',
     period: 'Ongoing · Jersey City, NJ',
-    summary: 'An Asian American coffee pop-up — drinks, community, and a lot of logistics.',
+    summary: 'An Asian American coffee pop-up: drinks, community, and a lot of logistics.',
     lines: [
       'Built a specialty menu on Asian American flavors: mango sticky rice, kulfi, ube kopi, miso caramel',
       'Ran operations, sourcing and service for pop-up events',
@@ -203,7 +203,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'To Be Continued',
     blurb:
-      'An Asian American coffee pop-up I co-founded — a menu of drinks built on flavors we grew up with, and a table for the community around them.',
+      'An Asian American coffee pop-up I co-founded: a menu built on flavors we grew up with, and a table for the community around them.',
     roast: 'Dark',
     tags: ['Hospitality', 'Brand', 'Community'],
   },
@@ -217,7 +217,7 @@ export const PROJECTS: Project[] = [
   {
     title: 'Perks tracker',
     blurb:
-      'A tracker for credit card benefits and recurring perks — quietly answers the question "what am I leaving on the table this month?" and pushes the answer to a display.',
+      'A tracker for credit card benefits and recurring perks that quietly answers the question "what am I leaving on the table this month?", then pushes the answer to a display.',
     roast: 'Medium',
     tags: ['TypeScript', 'Docker', 'Self-hosted'],
   },
@@ -274,7 +274,7 @@ export const POPUP = {
   also: [
     { name: 'Coffees', note: 'Espresso, macchiato, cortado, latte, americano, cappuccino', price: '5' },
     { name: 'Teas', note: 'April in Paris · Sun Showers', price: '5' },
-    { name: 'Dessert', note: 'Coffee jelly — espresso-based jelly with sweet cream', price: '4' },
+    { name: 'Dessert', note: 'Coffee jelly, espresso based, with sweet cream', price: '4' },
   ],
 };
 

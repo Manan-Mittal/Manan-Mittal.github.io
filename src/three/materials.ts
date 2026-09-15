@@ -171,8 +171,8 @@ export const M = {
   }),
   copper: new THREE.MeshStandardMaterial({
     color: '#b87333',
-    metalness: 1,
-    roughness: 0.28,
+    metalness: 0.94,
+    roughness: 0.42,
   }),
   walnut: new THREE.MeshStandardMaterial({
     color: '#6b4426',

@@ -409,17 +409,7 @@ export default function EspressoMachine() {
       <mesh position={[0, 0.9, -0.48]} material={M.charcoal}>
         <boxGeometry args={[1.68, 1.5, 0.06]} />
       </mesh>
-      {/* Warm spill inside the alcove so the group head isn't a silhouette.
-          Emissive on the back panel, not a light — it only has to glow. */}
-      <mesh position={[0, 1.62, -0.44]}>
-        <planeGeometry args={[1.6, 0.12]} />
-        <meshStandardMaterial color="#FFE0B0" emissive="#FFC98A" emissiveIntensity={1.6} toneMapped={false} />
-      </mesh>
 
-      {/* A plain brass rail where the maker's badge would go */}
-      <mesh position={[0, 2.0, 1.075]} material={M.copper}>
-        <boxGeometry args={[0.9, 0.05, 0.02]} />
-      </mesh>
       {[-1.25, 1.25].map((x) => (
         <mesh key={x} position={[x, 0.4, 1.075]} material={M.copper}>
           <boxGeometry args={[0.46, 0.05, 0.02]} />

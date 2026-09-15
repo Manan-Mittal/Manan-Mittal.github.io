@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="relative border-t border-roast-700 bg-roast-950 py-10">
       <div className="container flex flex-col items-center justify-between gap-6 md:flex-row">
         <p className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-cream-mute">
-          © {new Date().getFullYear()} {PROFILE.name} · Built with React, Three.js and too much
-          caffeine
+          © {new Date().getFullYear()} {PROFILE.name} · React and Three.js · Every object on
+          this bar is drawn in code, no models
         </p>
 
         <div className="flex items-center gap-6">
