@@ -34,16 +34,27 @@ export default function Projects() {
         in my apartment.
       </p>
 
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {PROJECTS.map((project) => (
+      <ul className="grid gap-5 sm:grid-cols-2">
+        {PROJECTS.map((project, i) => (
           <li key={project.title}>
-            <article className="panel group flex h-full flex-col p-5 transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-crema/40">
-              <RoastMeter roast={project.roast} />
+            <article className="panel group relative flex h-full flex-col overflow-hidden p-7 transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-crema/40 md:p-8">
+              {/* Light catching the top edge, stronger as you approach */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-crema/50 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+              />
 
-              <h3 className="mt-4 font-display text-xl leading-tight text-cream transition-colors group-hover:text-crema">
+              <div className="flex items-start justify-between gap-4">
+                <RoastMeter roast={project.roast} />
+                <span className="font-mono text-[0.62rem] tabular-nums text-cream-mute">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <h3 className="mt-5 font-display text-[1.6rem] leading-tight text-cream transition-colors group-hover:text-crema md:text-[1.9rem]">
                 {project.title}
               </h3>
-              <p className="mt-3 flex-1 text-[0.93rem] leading-relaxed text-cream-dim">
+              <p className="mt-3.5 flex-1 text-[0.97rem] leading-relaxed text-cream-dim">
                 {project.blurb}
               </p>
 

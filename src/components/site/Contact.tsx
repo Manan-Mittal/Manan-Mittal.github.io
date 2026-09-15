@@ -41,7 +41,7 @@ export default function Contact() {
             <p className="text-center text-[0.9rem] font-bold uppercase tracking-[0.24em]">
               Bar Manan
             </p>
-            <p className="mt-1 text-center text-[0.62rem] uppercase tracking-[0.18em] text-roast-950/55">
+            <p className="mt-1 text-center text-[0.62rem] uppercase tracking-[0.18em] text-roast-950/65">
               {PROFILE.location} · open all hours
             </p>
 
@@ -87,7 +87,7 @@ export default function Contact() {
               <span>Total</span>
               <span>$0.00</span>
             </div>
-            <p className="mt-4 text-center text-[0.6rem] uppercase tracking-[0.2em] text-roast-950/50">
+            <p className="mt-4 text-center text-[0.6rem] uppercase tracking-[0.2em] text-roast-950/65">
               Thank you — come back soon
             </p>
 

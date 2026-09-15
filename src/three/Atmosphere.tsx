@@ -48,9 +48,13 @@ const SHAFT_VERT = /* glsl */ `
 `;
 
 /**
- * Density is highest where you look through the most air — the middle of the
- * cone, where the surface normal is perpendicular to the view. Fading on that
- * dot product turns a hard-edged cone into something that reads as light.
+ * Density follows how much air you are looking through. Down the middle of the
+ * cone that is the full width, and it falls to nothing at the silhouette, where
+ * the surface turns edge-on to the camera.
+ *
+ * Which means the fade goes with |dot(N, V)|, not against it: facing = 1 in the
+ * middle, 0 at the rim. Inverting that lights the rim instead and draws a hard
+ * diagonal line across the scene — the cone's own outline.
  */
 const SHAFT_FRAG = /* glsl */ `
   uniform vec3 uColor;
@@ -60,8 +64,10 @@ const SHAFT_FRAG = /* glsl */ `
   varying vec3 vViewW;
   void main() {
     float drop = pow(clamp(vUvs.y, 0.0, 1.0), 1.7);
-    float grazing = 1.0 - abs(dot(normalize(vNormalW), normalize(vViewW)));
-    float body = pow(clamp(grazing, 0.0, 1.0), 1.6);
+    float facing = abs(dot(normalize(vNormalW), normalize(vViewW)));
+    float body = pow(clamp(facing, 0.0, 1.0), 1.5);
+    // Feather the last of it so nothing lands on an exact edge
+    body *= smoothstep(0.0, 0.22, facing);
     gl_FragColor = vec4(uColor, drop * body * uOpacity);
   }
 `;

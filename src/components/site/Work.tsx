@@ -20,7 +20,7 @@ export default function Work() {
   const job = JOBS[active];
 
   return (
-    <Section id="work" kicker="02 · Cortado" title={<>Tickets on<br />the rail.</>} side="right" wide>
+    <Section id="work" kicker="02 · Cortado" title={<>Tickets on<br />the rail.</>} wide>
       <div className="grid gap-8 lg:grid-cols-12">
         <div
           role="tablist"
@@ -66,40 +66,61 @@ export default function Work() {
         </div>
 
         <div className="lg:col-span-8">
+          {/* The metaphor taken literally: the selected job is a docket printed
+              on paper and clipped to the rail, not another dark panel. Bright
+              stock against the dark room is what the menu card and the receipt
+              already do, and it is the best-looking thing on the page. */}
           <div
             role="tabpanel"
             id={`job-panel-${active}`}
             aria-labelledby={`job-tab-${active}`}
             tabIndex={0}
-            className="panel h-full p-6 md:p-8"
+            className="relative h-full rounded-sm bg-cream px-6 py-7 text-roast-950 shadow-lift md:px-9 md:py-9"
           >
-            {/* Perforated top edge, like a docket torn off the printer */}
+            {/* Torn top edge */}
             <div
               aria-hidden="true"
-              className="mb-6 h-2 w-full rounded-full opacity-60"
+              className="absolute inset-x-0 -top-1.5 h-2"
               style={{
                 backgroundImage:
-                  'radial-gradient(circle at 4px 50%, hsl(24 24% 4%) 3px, transparent 3.5px)',
-                backgroundSize: '12px 100%',
+                  'radial-gradient(circle at 5px 100%, transparent 5px, #F4E7D6 5.5px)',
+                backgroundSize: '10px 10px',
               }}
             />
-            <p className="font-mono text-[0.64rem] uppercase tracking-[0.18em] text-cream-mute">
-              {job.period}
-            </p>
-            <h3 className="mt-3 font-display text-2xl leading-tight text-cream md:text-3xl">
-              {job.title}
-              <span className="text-crema"> @ {job.company}</span>
-            </h3>
-            <p className="mt-3 text-cream-dim">{job.summary}</p>
 
-            <ul className="mt-6 space-y-3 border-t border-dashed border-roast-600 pt-6">
-              {job.lines.map((line) => (
-                <li key={line} className="flex gap-3 text-[0.97rem] leading-relaxed text-cream-dim">
-                  <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-crema" />
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-roast-950/65">
+              <span>Ticket {job.ticket}</span>
+              <span>{job.period}</span>
+            </div>
+
+            <h3 className="mt-4 font-display text-[clamp(1.5rem,2.6vw,2.15rem)] leading-[1.1]">
+              {job.title}
+              <span className="block text-copper-dim">{job.company}</span>
+            </h3>
+            <p className="mt-3 max-w-xl text-[0.98rem] leading-relaxed text-roast-950/70">
+              {job.summary}
+            </p>
+
+            <div className="my-6 border-t border-dashed border-roast-950/25" />
+
+            <ul className="space-y-3.5">
+              {job.lines.map((line, i) => (
+                <li key={line} className="flex gap-3.5 text-[0.95rem] leading-relaxed text-roast-950/80">
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 shrink-0 font-mono text-[0.62rem] tabular-nums text-copper-dim"
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                   {line}
                 </li>
               ))}
             </ul>
+
+            <div className="mt-7 flex items-center justify-between border-t border-dashed border-roast-950/25 pt-4 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-roast-950/65">
+              <span>{job.active ? 'Still on the pass' : 'Closed'}</span>
+              <span aria-hidden="true">· · ·</span>
+            </div>
           </div>
         </div>
       </div>

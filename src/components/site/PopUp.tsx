@@ -3,7 +3,7 @@ import { POPUP } from '@/content/site';
 
 export default function PopUp() {
   return (
-    <Section id="popup" kicker="04 · House Special" title={<>To Be<br />Continued.</>} side="right">
+    <Section id="popup" kicker="04 · House Special" title={<>To Be<br />Continued.</>}>
       <p className="-mt-3 mb-8 font-display text-xl italic text-crema">{POPUP.standfirst}</p>
 
       <div className="space-y-5 text-pretty text-cream-dim">
@@ -61,7 +61,7 @@ export default function PopUp() {
           ))}
         </div>
 
-        <p className="mt-5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-roast-950/50">
+        <p className="mt-5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-roast-950/65">
           Rotating · Pop-up dates announced on Instagram
         </p>
       </div>

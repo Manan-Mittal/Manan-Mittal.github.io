@@ -93,15 +93,13 @@ export const PROFILE = {
   photoCaption: 'At a microroasterie in Quebec.',
   tagline: 'I build software during the day and pull espresso shots on the weekend.',
   bio: [
-    `I'm a software engineer at Deloitte, working on AI systems for the Veterans Health
-     Administration. Most of my time goes into a multi-agent LLM assistant that reads
-     per-case medical evidence and drafts standardized disability evaluation
-     questionnaires — work that used to be manual clinician review, on a queue measured
-     in hundreds of thousands of claims a quarter.`,
-    `The interesting part isn't the model, it's everything around it: guardrails that
-     refuse malformed output before a clinician ever sees it, an offline eval harness
-     that catches regressions before release, and reactive Java services underneath that
-     have to stay up. Large, old, load-bearing systems that people actually depend on.`,
+    `I'm a software engineer at Deloitte, working on AI systems in the public sector. Most of
+     my time goes into multi-agent LLM assistants that read large sets of documents and draft
+     structured output from them — work that used to be done by hand.`,
+    `The interesting part isn't the model, it's everything around it: guardrails that refuse
+     malformed output before anyone sees it, an offline eval harness that catches regressions
+     before release, and reactive Java services underneath that have to stay up. Large, old,
+     load-bearing systems that people depend on.`,
     `Outside of work I co-founded To Be Continued, an Asian American coffee pop-up. The menu
      starts from flavors we grew up with rather than from a syrup bottle, which turns out to
      be a lot of sourcing, a lot of testing, and a folding table at six in the morning.`,
@@ -141,14 +139,14 @@ export const JOBS: Job[] = [
     title: 'Software Engineer II',
     company: 'Deloitte',
     period: 'Jul 2024 — present · New York, NY',
-    summary: 'AI systems for the Veterans Health Administration.',
+    summary: 'AI systems for public sector clients.',
     lines: [
-      'Designed a multi-agent LLM assistant that reasons over per-case indexed PDF evidence to draft and approve standardized disability evaluation questionnaires, replacing manual clinician review on a queue of hundreds of thousands of claims a quarter',
-      'Built 7 LLM guardrails now running across 17+ projects, validating output against clinical form schemas and blocking malformed responses before a reviewer sees them',
+      'Designed a multi-agent LLM assistant that retrieves and reasons over large indexed document sets to draft structured forms, replacing a manual review step at scale',
+      'Built 7 LLM guardrails now running across 17+ projects, validating output against strict schemas and blocking malformed responses before a reviewer sees them',
       'Built an offline evaluation harness for production agent workflows that catches accuracy and behavior regressions before release',
       'Architected reactive Java services on Spring Boot and Project Reactor with Redis caching and ZooKeeper coordination',
-      'Implemented OCR-driven document indexing and tuned the surrounding SQL, scaling throughput 6x — roughly 1,000 to over 6,000 cases a day',
-      'Shipped TypeScript and React front ends with MobX, used by hundreds of thousands of clinicians and patients under federal privacy, security and Section 508 requirements',
+      'Implemented OCR-driven document indexing and tuned the surrounding SQL, scaling throughput roughly 6x',
+      'Shipped TypeScript and React front ends with MobX under federal privacy, security and Section 508 accessibility requirements',
     ],
     active: true,
   },
@@ -157,7 +155,7 @@ export const JOBS: Job[] = [
     title: 'Software Engineering Intern',
     company: 'Deloitte',
     period: 'Jun 2023 — Aug 2023 · Rosslyn, VA',
-    summary: 'Backend and reporting on a federal engagement.',
+    summary: 'Backend services and reporting on a government engagement.',
     lines: [
       'Built a Java and Spring Boot REST API that processed JSON chart data to power dynamic visualizations',
       'Automated an email reporting system with templated HTML, live database content and PDF export, removing a recurring manual task',
@@ -169,10 +167,10 @@ export const JOBS: Job[] = [
     title: 'Software Engineering Intern',
     company: 'Mphasis',
     period: 'Jul 2022 — Sep 2022 · New York, NY',
-    summary: 'Turning federal regulation into structured, queryable data.',
+    summary: 'Turning regulatory documents into structured, queryable data.',
     lines: [
-      'Built semantic content-extraction algorithms converting 4,000+ Federal Register documents into standardized USLM XML, producing a library of 5,000+ structured documents',
-      'Implemented formal logic-based analysis over the corpus to evaluate regulatory norms and resolve normative queries automatically',
+      'Built semantic content-extraction algorithms converting 4,000+ regulatory documents into standardized USLM XML, producing a library of 5,000+ structured documents',
+      'Implemented formal logic-based analysis over the corpus to evaluate norms and resolve queries against them automatically',
     ],
   },
   {
