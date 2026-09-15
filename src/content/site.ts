@@ -89,7 +89,7 @@ export const PROFILE = {
   phoneHref: 'tel:+17326978114',
   github: 'https://github.com/Manan-Mittal',
   linkedin: 'https://linkedin.com/in/manan-mittal7',
-  photo: '/images/IMG_9778.jpeg',
+  photo: '/images/manan-quebec.webp',
   photoCaption: 'At a microroasterie in Quebec.',
   tagline: 'I build software during the day and pull espresso shots on the weekend.',
   bio: [

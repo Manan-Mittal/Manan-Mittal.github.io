@@ -46,8 +46,8 @@ export default function About() {
               <img
                 src={PROFILE.photo}
                 alt="Manan Mittal at a microroasterie in Quebec"
-                width={720}
-                height={900}
+                width={800}
+                height={1000}
                 loading="lazy"
                 decoding="async"
                 className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out-expo hover:scale-[1.03]"

@@ -1,27 +1,20 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import Index from './pages/Index';
+import NotFound from './pages/NotFound';
 
-const queryClient = new QueryClient();
+/**
+ * One page and a 404. A client-side router, a query client, a tooltip provider
+ * and two toast systems were all being shipped to every visitor to render
+ * exactly nothing — this site has no routes, no queries and no toasts.
+ *
+ * GitHub Pages serves 404.html (a copy of index.html) for unknown paths with
+ * the original URL intact, so reading the pathname here is all the routing a
+ * static single-page site needs.
+ */
+const App = () => {
+  const path = window.location.pathname.replace(/\/+$/, '');
+  const isHome = path === '' || path === '/index.html';
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return isHome ? <Index /> : <NotFound path={window.location.pathname} />;
+};
 
 export default App;

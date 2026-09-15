@@ -1,13 +1,9 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import {
-  ContactShadows,
-  Environment,
-  Lightformer,
-  PerformanceMonitor,
-  AdaptiveDpr,
-  Preload,
-} from '@react-three/drei';
+import { ContactShadows, PerformanceMonitor, AdaptiveDpr, Preload } from '@react-three/drei';
+import BuiltEnvironment from './Environment';
+import Budget from './Budget';
+import Atmosphere from './Atmosphere';
 import * as THREE from 'three';
 import EspressoMachine from './EspressoMachine';
 import Room from './Room';
@@ -165,7 +161,7 @@ function Lights() {
   );
 }
 
-function Stage() {
+function Stage({ degraded }: { degraded: boolean }) {
   const three = useThree();
   useEffect(() => {
     if (import.meta.env.DEV) (window as unknown as Record<string, unknown>).__stage = three;
@@ -176,20 +172,14 @@ function Stage() {
     <>
       <Lights />
 
-      {/* A built environment map — soft boxes above and to the sides. This is
-          what makes the stainless read as metal instead of grey plastic. */}
-      <Environment resolution={512} frames={1}>
-        <Lightformer form="rect" intensity={6} color="#fff0dd" scale={[12, 5, 1]} position={[0, 7, 4]} rotation={[-Math.PI / 2.6, 0, 0]} />
-        <Lightformer form="rect" intensity={3.2} color="#cfe3ef" scale={[7, 7, 1]} position={[-9, 2.5, 3]} rotation={[0, Math.PI / 2, 0]} />
-        <Lightformer form="rect" intensity={2.8} color="#ffd9a8" scale={[7, 7, 1]} position={[9, 2.5, 3]} rotation={[0, -Math.PI / 2, 0]} />
-        <Lightformer form="ring" intensity={4} color="#E9A64A" scale={3.4} position={[2, 3, -7]} />
-      </Environment>
+      <BuiltEnvironment />
 
       <group>
         <Room />
         <EspressoMachine />
         <Cup />
         <MilkPitcher />
+        <Atmosphere />
       </group>
 
       <ContactShadows
@@ -204,6 +194,7 @@ function Stage() {
 
       <BrewDriver />
       <Rig />
+      <Budget degraded={degraded} />
       <Preload all />
     </>
   );
@@ -237,7 +228,7 @@ export default function Scene({ active }: { active: boolean }) {
     >
       <PerformanceMonitor onDecline={() => setDegraded(true)} />
       <Suspense fallback={null}>
-        <Stage />
+        <Stage degraded={degraded} />
       </Suspense>
       <AdaptiveDpr pixelated />
     </Canvas>
