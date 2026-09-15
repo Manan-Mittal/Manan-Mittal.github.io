@@ -151,23 +151,23 @@ export const gaugeTexture = (() => {
 export const M = {
   /** Machine shell — brushed stainless with a warm tint so it sits in the room */
   steel: new THREE.MeshStandardMaterial({
-    color: '#d9d6d0',
-    metalness: 0.88,
-    roughness: 0.38,
-    envMapIntensity: 1.15,
+    color: '#d5cec3',
+    metalness: 0.84,
+    roughness: 0.46,
+    envMapIntensity: 1.0,
   }),
   /** Polished chrome for the group head, wand and rails */
   chrome: new THREE.MeshStandardMaterial({
-    color: '#e8e8ea',
-    metalness: 1,
-    roughness: 0.17,
-    envMapIntensity: 1.35,
+    color: '#e4e2e0',
+    metalness: 0.96,
+    roughness: 0.23,
+    envMapIntensity: 1.15,
   }),
   /** Matte powder-coat black for the alcove, tray and panels */
   charcoal: new THREE.MeshStandardMaterial({
-    color: '#241d17',
-    metalness: 0.4,
-    roughness: 0.66,
+    color: '#27201a',
+    metalness: 0.32,
+    roughness: 0.74,
   }),
   copper: new THREE.MeshStandardMaterial({
     color: '#b87333',

@@ -51,7 +51,7 @@ export default function TopBar() {
             className="group flex items-center gap-3"
           >
             <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-crema opacity-60" />
+              <span className="absolute inline-flex h-full w-full animate-breathe rounded-full bg-crema" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-crema" />
             </span>
             <span className="font-mono text-[0.7rem] uppercase tracking-[0.28em] text-cream transition-colors group-hover:text-crema">

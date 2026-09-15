@@ -4,7 +4,7 @@ import { PROFILE, SKILLS } from '@/content/site';
 
 export default function About() {
   return (
-    <Section id="about" kicker="01 · Espresso" title={<>Short, strong,<br />no hiding.</>}>
+    <Section id="about" kicker="01 · Espresso" title={<>Nothing<br />watered down.</>}>
       <div className="grid gap-10 md:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-5 text-pretty text-cream-dim">
           {PROFILE.bio.map((para) => (
@@ -22,7 +22,7 @@ export default function About() {
                 <p className="text-sm text-cream-dim">{PROFILE.education.degrees}</p>
                 <p className="mt-1 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-cream-mute">
                   {PROFILE.education.years} · {PROFILE.education.where} ·{' '}
-                  <span className="text-crema">{PROFILE.education.gpa} GPA</span>
+                  <span className="whitespace-nowrap text-crema">{PROFILE.education.gpa} GPA</span>
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {PROFILE.education.honors.map((h) => (

@@ -111,9 +111,10 @@ function Grinder() {
       <Part
         label="Run the grinder"
         sub={opens('projects')}
-        radius={0.75}
+        radius={0.62}
+        markerY={1.15}
         lift={0}
-        labelOffset={1.1}
+        labelOffset={0.5}
         onSelect={onSelect}
       >
         {/* Base, with rubber feet and a drip lip */}
@@ -320,7 +321,7 @@ function BeanBowl({ position }: { position: [number, number, number] }) {
   }, [seeds]);
 
   return (
-    <Part label="House blend" sub="Roasted last Tuesday" position={position} radius={0.4} lift={0.02} labelOffset={0.24}>
+    <group position={position}>
       <mesh material={M.ceramic} castShadow receiveShadow>
         <cylinderGeometry args={[0.42, 0.3, 0.14, 28]} />
       </mesh>
@@ -331,7 +332,7 @@ function BeanBowl({ position }: { position: [number, number, number] }) {
         <sphereGeometry args={[0.055, 8, 6]} />
         <primitive object={M.bean} attach="material" />
       </instancedMesh>
-    </Part>
+    </group>
   );
 }
 

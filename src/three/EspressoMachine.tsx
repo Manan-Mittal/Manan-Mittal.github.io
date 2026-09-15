@@ -352,7 +352,7 @@ export default function EspressoMachine() {
         <group key={x}>
           <RoundedBox
             args={[0.9, 2.0, 2.0]}
-            radius={0.1}
+            radius={0.15}
             smoothness={4}
             position={[x, 1.12, 0]}
             material={M.steel}
@@ -360,7 +360,7 @@ export default function EspressoMachine() {
           />
           <RoundedBox
             args={[0.74, 1.72, 0.04]}
-            radius={0.03}
+            radius={0.05}
             smoothness={3}
             position={[x, 1.12, 1.035]}
             material={M.steel}
@@ -379,7 +379,7 @@ export default function EspressoMachine() {
       {/* Bridge across the top */}
       <RoundedBox
         args={[3.4, 0.58, 2.0]}
-        radius={0.09}
+        radius={0.13}
         smoothness={4}
         position={[0, 1.84, 0]}
         material={M.steel}
@@ -387,7 +387,7 @@ export default function EspressoMachine() {
       />
       <RoundedBox
         args={[1.66, 0.42, 0.04]}
-        radius={0.03}
+        radius={0.05}
         smoothness={3}
         position={[0, 1.84, 1.035]}
         material={M.steel}
@@ -396,7 +396,7 @@ export default function EspressoMachine() {
       {/* Overhanging cap + warming deck */}
       <RoundedBox
         args={[3.62, 0.2, 2.14]}
-        radius={0.06}
+        radius={0.09}
         smoothness={4}
         position={[0, 2.22, 0]}
         material={M.charcoal}

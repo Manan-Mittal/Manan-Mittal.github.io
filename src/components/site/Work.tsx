@@ -51,7 +51,7 @@ export default function Work() {
                   <span className={selected ? 'text-crema' : 'text-cream-mute'}>{j.ticket}</span>
                   {j.active && (
                     <span className="flex items-center text-crema">
-                      <Dot size={18} className="-mr-1.5 animate-pulse" aria-hidden="true" />
+                      <Dot size={18} className="-mr-1.5" aria-hidden="true" />
                       Open
                     </span>
                   )}

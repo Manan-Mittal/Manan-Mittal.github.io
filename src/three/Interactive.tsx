@@ -16,6 +16,7 @@ export function Part({
   radius = 0.3,
   lift = 0.04,
   labelOffset = 0.4,
+  markerY = 0,
   onSelect,
   children,
 }: {
@@ -26,6 +27,12 @@ export function Part({
   radius?: number;
   lift?: number;
   labelOffset?: number;
+  /**
+   * Height of the ring and caption within the group. Tall objects are anchored
+   * at their base, so without this their marker lands on the counter next to
+   * whatever else is standing there.
+   */
+  markerY?: number;
   onSelect?: () => void;
   children?: ReactNode;
 }) {
@@ -81,7 +88,7 @@ export function Part({
         </mesh>
       </group>
 
-      <mesh ref={ring} position={[0, 0, radius * 0.8]}>
+      <mesh ref={ring} position={[0, markerY, radius * 0.8]}>
         <ringGeometry args={[radius * 0.78, radius * 0.86, 32]} />
         <meshBasicMaterial
           color="#E9A64A"
@@ -95,7 +102,7 @@ export function Part({
       </mesh>
 
       {hovered && (
-        <Html center distanceFactor={8} position={[0, radius + labelOffset, 0]} zIndexRange={[30, 0]}>
+        <Html center distanceFactor={8} position={[0, markerY + radius + labelOffset, 0]} zIndexRange={[30, 0]}>
           <span className="pointer-events-none flex flex-col items-center gap-0.5 whitespace-nowrap rounded border border-crema/50 bg-roast-950 px-2.5 py-1.5">
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-crema">
               {label}
